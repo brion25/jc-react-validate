@@ -20,6 +20,10 @@ class Input extends Component {
     })
   }
 
+  componentDidUpdate() {
+    console.log('Component got Updated!')
+  }
+
   render() {
     /*
     * _validation is injected by the HOC withValidations
@@ -36,7 +40,7 @@ class Input extends Component {
         {
           _validation.input&&
           <ul className="errors-list">
-            {_validation.input.map(msg => (<li>{msg}</li>))}
+            {_validation.input.map((msg, i) => (<li key={i}>{msg}</li>))}
           </ul>
         }
         <div>

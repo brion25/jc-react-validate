@@ -1,5 +1,6 @@
 import _castArray from 'lodash/castArray'
 import _isEqual from 'lodash/isEqual'
+import _isEmpty from 'lodash/isEmpty'
 
 export function buildConstraint(values, constraint) {
   const _values = _castArray(values)
@@ -14,4 +15,16 @@ export function buildConstraint(values, constraint) {
       [v]: constraint
     })
   }, {})
+}
+
+export function formatState(errors, state) {
+  if (!_isEmpty(errors)) {
+    return Object.assign({}, state, {
+      _validation: errors
+    })
+  } else {
+    return Object.assign({}, state, {
+      _validation: {}
+    })
+  }
 }

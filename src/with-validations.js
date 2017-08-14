@@ -1,4 +1,5 @@
 import stateWrapper from './state-wrapper'
+import propsWrapper from './props-wrapper'
 import _isEmpty from 'lodash/isEmpty'
 
 function withValidations(WrappedComponent, {inspect, constraint}) {
@@ -9,6 +10,8 @@ function withValidations(WrappedComponent, {inspect, constraint}) {
   switch (inspect.on) {
     case 'state':
       return stateWrapper(WrappedComponent, inspect, constraint)
+    case 'props':
+      return propsWrapper(WrappedComponent, inspect, constraint)
     default:
       return WrappedComponent
   }
