@@ -1,0 +1,15 @@
+.example {
+  input.invalid {
+    border: 1px solid red;
+  }
+
+  .errors-list {
+    padding: 0;
+    list-style-type: none;
+    color: red;
+  }
+
+  pre {
+    margin-top: 30px;
+  }
+}
