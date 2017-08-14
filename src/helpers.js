@@ -6,7 +6,7 @@ export function buildConstraint(values, constraint) {
   const _values = _castArray(values)
   const constraintValues = Object.keys(constraint)
 
-  if (_isEqual(_values, constraintValues)) {
+  if (_isEqual(_values, constraintValues) || _isEmpty(values)) {
     return constraint
   }
 
