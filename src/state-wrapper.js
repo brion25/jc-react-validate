@@ -3,8 +3,8 @@ import _isEqual from 'lodash/isEqual'
 
 import { buildConstraint, formatState } from './helpers'
 
-function stateWrapper(WrappedComponent, { attrs, addErrorsTo = 'state' }, constraint) {
-  const _constraint = buildConstraint(attrs, constraint)
+function stateWrapper(WrappedComponent, { attrs, addErrorsTo = 'state' }, constraints, format) {
+  const _constraints = buildConstraint(attrs, constraints)
   let cmpErrors = null
 
   switch (addErrorsTo) {
@@ -12,7 +12,7 @@ function stateWrapper(WrappedComponent, { attrs, addErrorsTo = 'state' }, constr
     case 'state':
       return class extends WrappedComponent {
         componentDidUpdate() {
-          const errors = validate(this.state, _constraint)
+          const errors = validate(this.state, _constraints, format)
 
           if (!_isEqual(cmpErrors, errors)) {
             cmpErrors = errors
