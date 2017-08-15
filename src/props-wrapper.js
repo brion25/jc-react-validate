@@ -1,7 +1,8 @@
+import React from 'react'
 import validate from 'validate.js'
 import _isEqual from 'lodash/isEqual'
 
-import { buildConstraint } from './helpers'
+import { buildConstraint, formatObjectToValidate } from './lib/helpers'
 
 function propsWrapper(WrappedComponent, { attrs, addErrorsTo = 'state' }, constraints, format) {
   const _constraints = buildConstraint(attrs, constraints)
@@ -12,7 +13,9 @@ function propsWrapper(WrappedComponent, { attrs, addErrorsTo = 'state' }, constr
     case 'state':
       return class extends WrappedComponent {
         componentWillReceiveProps(nextProps) {
-          const errors = validate(nextProps, _constraints, {format})
+          const state = formatObjectToValidate(nextProps, attrs)
+
+          const errors = validate(state, _constraints, {format})
 
           if (!_isEqual(cmpErrors, errors)) {
             cmpErrors = errors
@@ -31,6 +34,14 @@ function propsWrapper(WrappedComponent, { attrs, addErrorsTo = 'state' }, constr
           return super.render()
         }
       }
+    case 'props':
+      return (props) => {
+        const state = formatObjectToValidate(props, attrs)
+        const errors = validate(state, _constraints, {format})
+
+        return <WrappedComponent {...props} _validation={errors || {}} />
+      }
+
   }
 }
 
