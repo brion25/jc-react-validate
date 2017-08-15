@@ -9,6 +9,17 @@
     color: red;
   }
 
+  div.errors-list {
+    p {
+      margin-bottom: 0;
+      color: black;
+
+      i {
+        color: red;
+      }
+    }
+  }
+
   pre {
     margin-top: 30px;
   }

@@ -16,15 +16,3 @@ export function buildConstraint(values, constraint) {
     })
   }, {})
 }
-
-export function formatState(errors, state) {
-  if (!_isEmpty(errors)) {
-    return Object.assign({}, state, {
-      _validation: errors
-    })
-  } else {
-    return Object.assign({}, state, {
-      _validation: {}
-    })
-  }
-}

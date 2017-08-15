@@ -1,6 +1,17 @@
 import React, { Component } from 'react'
 import { withValidations } from '../index'
 
+function renderError({attribute, error, value}, i) {
+  console.log(attribute, error, value, i)
+  return (
+    <div key={i}>
+      <p>Attribute: <i>{attribute}</i></p>
+      <p>Value: <i>{value}</i></p>
+      <p>error: <i>{error}</i></p>
+    </div>
+  )
+}
+
 class Input extends Component {
   constructor(props) {
     super(props)
@@ -26,22 +37,22 @@ class Input extends Component {
 
   render() {
     /*
-    * _validation is injected by the HOC withValidations
-    * */
+     * _validation is injected by the HOC withValidations
+     * */
     const {
       input,
-      _validation = {}
+      _validation = []
     } = this.state
 
     return (
       <div className="example--input">
         <h2>Simple Input Example</h2>
-        <input name="input" value={input} onChange={this.onChange} className={_validation.input ? 'invalid' : ''} />
+        <input name="input" value={input} onChange={this.onChange} />
         {
-          _validation.input&&
-          <ul className="errors-list">
-            {_validation.input.map((msg, i) => (<li key={i}>{msg}</li>))}
-          </ul>
+          _validation.length > 0&&
+          <div className="errors-list">
+            {_validation.map(renderError)}
+          </div>
         }
         <div>
           <h4>Component state</h4>
@@ -59,6 +70,7 @@ const options = {
     on: 'state',
     attrs: 'input'
   },
+  format: 'detailed',
   constraint: {
     presence: true
   }
