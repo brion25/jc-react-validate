@@ -12,7 +12,7 @@ function stateWrapper(WrappedComponent, { attrs, addErrorsTo = 'state' }, constr
     case 'state':
       return class extends WrappedComponent {
         componentDidUpdate() {
-          const errors = validate(this.state, _constraints, format)
+          const errors = validate(this.state, _constraints, {format})
 
           if (!_isEqual(cmpErrors, errors)) {
             cmpErrors = errors

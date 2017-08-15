@@ -41,12 +41,12 @@ class CustomFormat extends Component {
      * */
     const {
       password,
-      _validation = { password: [] }
+      _validation = []
     } = this.state
 
     // Create the password validation checks object
     // The _validation.password will return an array of validation type strings that are not met
-    const checks = _validation.password.reduce(reduceChecks, passwordChecks)
+    const checks = Array.isArray(_validation) ? _validation.reduce(reduceChecks, passwordChecks) : passwordChecks
 
     return (
       <div className="example--input">
@@ -81,7 +81,7 @@ const options = {
     password: {
       presence: true,
       length: {
-        minimum: 8,
+        minimum: 10,
       },
       exclusion: {
         within: ['password'],
