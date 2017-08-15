@@ -11,3 +11,7 @@ npm run examples -- --run=[EXAMPLE].js
 ```
 
 Being `[EXAMPLE]` the filename you want to run on the `examples` folder
+
+# TODO
+
+- [ ] Remove lodash as dependency
