@@ -14,4 +14,5 @@ Being `[EXAMPLE]` the filename you want to run on the `examples` folder
 
 ## TODO
 
-- [ ] Remove lodash as a dependency
+- [X] [15/08/2017] Remove lodash as a dependency
+  - *Lodash is not going to be removed as dependency, because of the work needed we decided to keep it as it is*
