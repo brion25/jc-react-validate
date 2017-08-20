@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Provider, connect } from 'react-redux'
 import { createStore } from 'redux'
 
-import { withValidations } from '../index'
+import { withValidations } from '../src/index'
 
 const SET_PHONES = 'SET_PHONES'
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import _isEmpty from 'lodash/isEmpty'
 
-import { withValidations } from '../index'
+import { withValidations } from '../src/index'
 
 function flatErrors(error) {
   return Object.keys(error).reduce((errorList, eKey) => {

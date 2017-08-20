@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withValidations } from '../index'
+import { withValidations } from '../src/index'
 
 function renderError({attribute, error, value}, i) {
   console.log(attribute, error, value, i)
