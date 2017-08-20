@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import validate from 'validate.js'
 
-import { withValidations } from '../index'
+import { withValidations } from '../src/index'
 
 validate.formatters.validatorTypeFormat = errors => {
   return errors.map((error) => error.validator)

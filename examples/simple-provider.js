@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Validate } from '../index'
+import { Validate } from '../src/index'
 
 class InputWithValidateInContext extends Component {
   constructor(props) {

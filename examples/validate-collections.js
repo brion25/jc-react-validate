@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withValidations } from '../index'
+import { withValidations } from '../src/index'
 
 class Phones extends Component {
   constructor(props) {
