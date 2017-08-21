@@ -1,10 +1,10 @@
-import React, { Component, Children, cloneElement } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import validate from 'validate.js'
 
 import { formatObjectToValidate, buildConstraint } from './lib/helpers'
 
-class ValidateProvider extends Component {
+class ValidateProvider extends React.Component {
   constructor(props) {
     super(props)
 
@@ -28,8 +28,8 @@ class ValidateProvider extends Component {
     const { passOnProps } = this.props
 
     if (passOnProps) {
-      const children = Children.map(this.props.children, (Child) => {
-        return cloneElement(Child, {
+      const children = React.Children.map(this.props.children, (Child) => {
+        return React.cloneElement(Child, {
           validate: this.validate
         })
       })
@@ -41,7 +41,7 @@ class ValidateProvider extends Component {
       )
     }
 
-    return Children.only(this.props.children)
+    return React.Children.only(this.props.children)
   }
 }
 

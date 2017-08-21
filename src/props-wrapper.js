@@ -9,39 +9,40 @@ function propsWrapper(WrappedComponent, { attrs, addErrorsTo = 'state' }, constr
   let cmpErrors = null
 
   switch (addErrorsTo) {
-    default:
-    case 'state':
-      return class extends WrappedComponent {
-        componentWillReceiveProps(nextProps) {
-          const state = formatObjectToValidate(nextProps, attrs)
+  default:
+  case 'state':
+    return class extends WrappedComponent {
+      componentWillReceiveProps(nextProps) {
+        const state = formatObjectToValidate(nextProps, attrs)
 
-          const errors = validate(state, _constraints, {format})
-
-          if (!_isEqual(cmpErrors, errors)) {
-            cmpErrors = errors
-
-            this.setState(Object.assign({}, this.state, {
-              _validation: errors || {}
-            }))
-          }
-
-          if (super.componentWillReceiveProps) {
-            super.componentWillReceiveProps(...arguments)
-          }
-        }
-
-        render() {
-          return super.render()
-        }
-      }
-    case 'props':
-      return (props) => {
-        const state = formatObjectToValidate(props, attrs)
         const errors = validate(state, _constraints, {format})
 
-        return <WrappedComponent {...props} _validation={errors || {}} />
+        if (!_isEqual(cmpErrors, errors)) {
+          cmpErrors = errors
+
+          this.setState(Object.assign({}, this.state, {
+            _validation: errors || {}
+          }))
+        }
+
+        if (super.componentWillReceiveProps) {
+          super.componentWillReceiveProps(...arguments)
+        }
       }
 
+      render() {
+        return super.render()
+      }
+    }
+  case 'props':
+    return class extends React.Component {
+      render() {
+        const state = formatObjectToValidate(this.props, attrs)
+        const errors = validate(state, _constraints, {format})
+
+        return <WrappedComponent {...this.props} _validation={errors || {}} />
+      }
+    }
   }
 }
 

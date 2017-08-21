@@ -8,12 +8,12 @@ function withValidations(WrappedComponent, {inspect, constraint, format = 'group
   }
 
   switch (inspect.on) {
-    case 'state':
-      return stateWrapper(WrappedComponent, inspect, constraint, format)
-    case 'props':
-      return propsWrapper(WrappedComponent, inspect, constraint, format)
-    default:
-      return WrappedComponent
+  case 'state':
+    return stateWrapper(WrappedComponent, inspect, constraint, format)
+  case 'props':
+    return propsWrapper(WrappedComponent, inspect, constraint, format)
+  default:
+    return WrappedComponent
   }
 }
 

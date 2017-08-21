@@ -1,7 +1,7 @@
 export function sanitizeKey(key) {
-  return key.replace(/\./g, "@");
+  return key.replace(/\./g, '@')
 }
 
 export function unsanitizeKey(key) {
-  return key.replace(/@/g, ".");
+  return key.replace(/@/g, '.')
 }

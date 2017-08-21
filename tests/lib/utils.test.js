@@ -1,4 +1,4 @@
-import { sanitizeKey, unsanitizeKey } from "./utils";
+import { sanitizeKey, unsanitizeKey } from "../../src/lib/utils";
 
 describe("utils", () => {
   it('sanitizeKey should replace "." with "@" ', async () => {
